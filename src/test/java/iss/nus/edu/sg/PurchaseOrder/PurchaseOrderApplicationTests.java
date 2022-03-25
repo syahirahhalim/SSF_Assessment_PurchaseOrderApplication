@@ -44,32 +44,6 @@ class PurchaseOrderApplicationTests {
 
 	}
     
-	@Test
-	void testGetQuotations() throws Exception {
-		JsonObject payload = Json.createObjectBuilder()
-				.add("name", "Kate")
-				.add("address", "123 Ocean Avenue")
-				.add("email", "kate@icloud.com")
-				.add("lineItems",
-						Json.createArrayBuilder()
-								.add(Json.createObjectBuilder().add("item", "durian").add("quantity", 9))
-								.add(Json.createObjectBuilder().add("item", "plum").add("quantity", 8))
-								.add(Json.createObjectBuilder().add("item", "pear").add("quantity", 7)))
-				                .build();
-
-		RequestBuilder req = MockMvcRequestBuilders.post("/api/po")
-				.accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(payload.toString());
-
-		System.out.println(payload.toString());
-		MvcResult result = mvc.perform(req).andReturn();
-		int status = result.getResponse().getStatus();
-		String responsePayload = result.getResponse().getContentAsString();
-
-		assertEquals(404, status);
-		System.out.println(responsePayload);
-	}
 }
 
 
